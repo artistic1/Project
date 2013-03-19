@@ -1,0 +1,37 @@
+<h1>Create a New Album</h1>
+
+
+
+<%= link_to 'Back', albums_path %>
+
+
+<%= form_for @album do |f| %>
+
+ 	<% @album.errors.full_messages.each do |msg| %>
+      <p class="error"><%= msg %></p>
+    <% end %>
+
+	<p>
+		<%= f.label :title %>
+		<br/>
+		<%= f.text_field :title %>
+	</p>
+
+	<p>
+		<%= f.label :body %>
+		<br/>
+		<%= f.text_area :body, :style => "height: 100px;" %>
+	</p>
+
+	
+  	<%= f.fields_for :beats do |beat_form| %>
+  		<%= beat_form.file_field :picture %>
+  	<% end %>
+
+  	<hr/>
+	<p>
+		<%= link_to "Back", :back %>
+		<%= f.submit %>
+	</p>
+
+<%- end %>
